@@ -1,0 +1,35 @@
+/* src/components/JobList.css */
+
+.job-list-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .filter-section label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .no-jobs {
+    text-align: center;
+    color: #888;
+  }
+  

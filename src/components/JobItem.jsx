@@ -1,4 +1,3 @@
-// src/components/JobItem.jsx
 import React from "react";
 import axios from "axios";
 import "./JobItem.css";
@@ -6,7 +5,7 @@ import "./JobItem.css";
 const JobItem = ({ job, onUpdate, onDelete }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/jobs/${job._id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/jobs/${job._id}`);
       onDelete();
     } catch (err) {
       console.error("Error deleting job:", err);
@@ -17,7 +16,7 @@ const JobItem = ({ job, onUpdate, onDelete }) => {
     const updatedStatus = prompt("Update Status (Applied, Interview, Offer, Rejected):", job.status);
     if (updatedStatus && updatedStatus !== job.status) {
       try {
-        await axios.put(`http://localhost:5000/api/jobs/${job._id}`, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/jobs/${job._id}`, {
           ...job,
           status: updatedStatus
         });

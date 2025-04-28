@@ -1,4 +1,3 @@
-// src/components/JobList.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import JobItem from "./JobItem";
@@ -11,7 +10,7 @@ const JobList = () => {
 
   const fetchJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/jobs");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/jobs`);
       setJobs(res.data);
     } catch (err) {
       console.error("Error fetching jobs:", err);
@@ -24,7 +23,6 @@ const JobList = () => {
 
   const filteredJobs = jobs.filter((job) => {
     const matchStatus = statusFilter ? job.status.toLowerCase().trim() === statusFilter.toLowerCase().trim() : true;
-
     const matchDate = dateFilter ? job.date === dateFilter : true;
     return matchStatus && matchDate;
   });

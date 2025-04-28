@@ -1,4 +1,3 @@
-// src/components/JobForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import "./JobForm.css";
@@ -18,14 +17,21 @@ const JobForm = ({ onJobAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/jobs", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/jobs`, {
         ...formData,
         status: formData.status.trim(),
         role: formData.role.trim(),
         company: formData.company.trim(),
         link: formData.link.trim()
       });
-      onJobAdded(); // refresh job list
+      onJobAdded(); // Refresh job list
+      setFormData({
+        company: "",
+        role: "",
+        status: "Applied",
+        date: "",
+        link: ""
+      }); // Clear form after submit
     } catch (err) {
       console.error(err);
     }
